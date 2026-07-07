@@ -47,6 +47,11 @@ class MenuHelper
                 'path' => '/doctors',
             ],
             [
+                'icon' => 'lucide:stethoscope',
+                'name' => 'Pharmacy',
+                'path' => '/modules/pharmacy/launch',
+            ],
+            [
                 'icon' => 'lucide:shield-check',
                 'name' => 'Roles & Permissions',
                 'roles' => ['super-admin'],

@@ -3,11 +3,16 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\PermisssionController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\SsoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 
 use App\Http\Controllers\Admin\MappingController;
 
+
+Route::middleware(['auth']) // or your Sanctum/session middleware group
+->get('/modules/pharmacy/launch', [SsoController::class, 'launchPharmacy'])
+    ->name('sso.pharmacy.launch');
 //Authentication
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
