@@ -136,28 +136,29 @@ jobs:
       - name: Deploy App Files (outside web root)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /hospital/
-          state-name: .ftp-deploy-sync-state-app.json
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/tests/**
-            **/.github/**
-            **/storage/logs/**
-            **/vendor/**
+            server: ${{ secrets.FTP_SERVER }}
+            username: ${{ secrets.FTP_USERNAME }}
+            password: ${{ secrets.FTP_PASSWORD }}
+            local-dir: ./
+            server-dir: /hospital/
+            state-name: .ftp-deploy-sync-state-app.json
+            dangerous-clean-slate: false
+            exclude: |
+              **/.git*
+              **/.git*/**
+              **/node_modules/**
+              **/tests/**
+              **/.github/**
+              **/public/**
+              **/storage/logs/**
+              **/vendor/**
 
       - name: Deploy Public Assets (web root)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./public/
-          server-dir: /public_html/
-          state-name: .ftp-deploy-sync-state-public.json
+            server: ${{ secrets.FTP_SERVER }}
+            username: ${{ secrets.FTP_USERNAME }}
+            password: ${{ secrets.FTP_PASSWORD }}
+            local-dir: ./public/
+            server-dir: /hospital.mrs151821.click/
+            state-name: .ftp-deploy-sync-state-public.json
