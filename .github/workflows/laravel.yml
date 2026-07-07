@@ -140,7 +140,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /pharmacy/
+          server-dir: /hospital/
           state-name: .ftp-deploy-sync-state-app.json
           dangerous-clean-slate: false
           exclude: |
