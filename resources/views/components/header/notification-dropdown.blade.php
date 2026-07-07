@@ -102,7 +102,7 @@
                         {{$unreadCount}}
                     </button>
                 </span>
-                <form method="POST" action="{{ route('notifications.readAll') }}">
+                <form method="POST" action="#">
                     @csrf
                     <button
                         type="submit"

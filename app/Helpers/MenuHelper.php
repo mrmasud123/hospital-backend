@@ -8,53 +8,63 @@ class MenuHelper
 {
     public static function getMainNavItems()
     {
-
         return [
             [
-                'icon' => 'lucide:home',
+                'icon' => 'lucide:layout-dashboard',
                 'name' => 'Dashboard',
-                'subItems' => [
-                    ['name' => 'Ecommerce', 'path' => '/'],
-                ],
+                'path' => '/'
+            ],
+//            [
+//                'icon' => 'lucide:grid-3x3',
+//                'name' => 'Measurement Units',
+//                'path' => '/units',
+//            ],
+            [
+                'icon' => 'lucide:building-2',
+                'name' => 'Department',
+                'path' => '/departments',
             ],
             [
-                'icon' => 'lucide:grid-3x3',
-                'name' => 'Measurement Units',
-                'path' => '/units',
+                'icon' => 'lucide:user-round',
+                'name' => 'Patient',
+                'path' => '/patients',
             ],
             [
-                'icon' => 'lucide:users',
-                'name' => 'Customers',
-                'path' => '/customers',
+                'icon' => 'lucide:clipboard-plus',
+                'name' => 'Prescription',
+                'path' => '/prescriptions',
+                'roles' => ['doctor']
+            ],
+            [
+                'icon' => 'lucide:flask-conical',
+                'name' => 'Laboratory',
+                'path' => '/laboratories',
+                'roles' => ['super-admin']
+            ],
+            [
+                'icon' => 'lucide:stethoscope',
+                'name' => 'Doctors',
+                'path' => '/doctors',
             ],
             [
                 'icon' => 'lucide:shield-check',
                 'name' => 'Roles & Permissions',
+                'roles' => ['super-admin'],
                 'subItems' => [
                     ['icon' => 'lucide:shield', 'name' => 'Roles', 'path' => '/roles', 'pro' => false],
                     ['icon' => 'lucide:lock', 'name' => 'Permissions', 'path' => '/permissions', 'pro' => false],
                     [
-                        'icon' => 'lucide:users',
+                        'icon' => 'lucide:link',
                         'name' => 'Role Permission Mapping',
                         'path' => '/role-permission-mapping',
-                        'permissions' =>['employee-mapping'],
                         'pro' => false
                     ]
                 ]
             ],
             [
-                'icon' => 'lucide:shopping-cart',
-                'name' => 'Sales',
-                'subItems' => [
-//                    ['icon' => 'lucide:receipt', 'name' => 'Sale list', 'path' => '/sales'],
-                    ['icon' => 'lucide:plus-circle', 'name' => 'New sale', 'path' => '/sales-create'],
-                    ['icon' => 'lucide:credit-card', 'name' => 'Collection', 'path' => '/collections'],
-                    ['icon' => 'lucide:file-text', 'name' => 'Invoice wise collection', 'path' => '/invoice-wise-collection'],
-                ],
-            ],
-            [
                 'icon' => 'lucide:package',
                 'name' => 'Product Management',
+                'roles' => ['super-admin'],
                 'subItems' => [
                     ['icon' => 'lucide:box', 'name' => 'Products', 'path' => '/products'],
                     ['icon' => 'lucide:truck', 'name' => 'Suppliers', 'path' => '/suppliers'],
@@ -64,10 +74,8 @@ class MenuHelper
                 ],
             ],
 
-
-
             [
-                'icon' => 'lucide:astroid',
+                'icon' => 'lucide:bot',
                 'name' => 'AI Chat',
                 'path' => '/ai-chat',
                 'roles' => ['owner']
@@ -77,36 +85,7 @@ class MenuHelper
 
     public static function getOthersItems()
     {
-        return [
-//            [
-//                'icon' => 'charts',
-//                'name' => 'Charts',
-//                'subItems' => [
-//                    ['name' => 'Line Chart', 'path' => '/line-chart', 'pro' => false],
-//                    ['name' => 'Bar Chart', 'path' => '/bar-chart', 'pro' => false]
-//                ],
-//            ],
-//            [
-//                'icon' => 'ui-elements',
-//                'name' => 'UI Elements',
-//                'subItems' => [
-//                    ['name' => 'Alerts', 'path' => '/alerts', 'pro' => false],
-//                    ['name' => 'Avatar', 'path' => '/avatars', 'pro' => false],
-//                    ['name' => 'Badge', 'path' => '/badge', 'pro' => false],
-//                    ['name' => 'Buttons', 'path' => '/buttons', 'pro' => false],
-//                    ['name' => 'Images', 'path' => '/image', 'pro' => false],
-//                    ['name' => 'Videos', 'path' => '/videos', 'pro' => false],
-//                ],
-//            ],
-//            [
-//                'icon' => 'authentication',
-//                'name' => 'Authentication',
-//                'subItems' => [
-//                    ['name' => 'Sign In', 'path' => '/signin', 'pro' => false],
-//                    ['name' => 'Sign Up', 'path' => '/signup', 'pro' => false],
-//                ],
-//            ],
-        ];
+        return [];
     }
 
     public static function getMenuGroups()
@@ -138,8 +117,9 @@ class MenuHelper
             ->filter(function ($menu) use ($user) {
 
                 if (isset($menu['roles'])) {
-                    $hasRole = collect($menu['roles'])
-                        ->contains(fn ($role) => $user->hasRole($role));
+                    $hasRole = $user &&
+                        collect($menu['roles'])
+                            ->contains(fn ($role) => $user->hasRole($role));
 
                     if (!$hasRole) {
                         return false;

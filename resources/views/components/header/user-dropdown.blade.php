@@ -27,7 +27,7 @@
             viewBox="0 0 24 24"
         >
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg><span>
+        </svg></span>
 
 
     </button>
@@ -46,7 +46,9 @@
     >
         <!-- User Info -->
         <div>
-            <span class="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">{{Auth::user()->name ?? 'N/A'}}</span>
+            <span class="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
+                {{Auth::user()->name ?? 'N/A'}}({{Auth::user()->getRoleNames()[0] ?? 'No-roles'}})
+            </span>
             <span class="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">{{Auth::user()->email ?? 'N/A'}}</span>
         </div>
 

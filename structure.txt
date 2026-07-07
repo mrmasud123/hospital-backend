@@ -13417,7 +13417,7 @@ D:.
 |   |           roles.js
 |   |           sales.js
 |   |           suppliers.js
-|   |           units.js
+|   |           departments.js
 |   |
 |   +---css
 |   |       app.css

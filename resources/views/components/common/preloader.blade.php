@@ -56,7 +56,7 @@
             </div>
 
             <div class="text-2xl font-bold tracking-wide text-green-600">
-                MR<span class="text-teal-400">PHARMACY</span>
+                MR<span class="text-teal-400">HOSPITAL</span>
             </div>
 
             <div class="flex gap-1.5 -mt-2">

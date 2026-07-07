@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Modules\Doctor\Models\DoctorProfile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function isOnline(): bool
     {
         return $this->last_activity_at && $this->last_activity_at->gt(now()->subMinutes(5));
+    }
+
+    public function doctorProfile()
+    {
+        return $this->hasOne(DoctorProfile::class);
     }
 }

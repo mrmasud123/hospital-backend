@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Modules\Department\Interfaces\DepartmentRepositoryInterface;
+use App\Modules\Department\Repositories\DepartmentRepository;
+use App\Modules\Department\Services\DepartmentService;
 use App\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryService::class, function ($app) {
             return new CategoryService();
         });
+        $this->app->bind(DepartmentRepositoryInterface::class, DepartmentRepository::class);
     }
 
     /**

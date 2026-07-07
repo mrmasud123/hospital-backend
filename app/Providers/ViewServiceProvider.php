@@ -13,18 +13,18 @@ class ViewServiceProvider extends ServiceProvider
     {
 
         View::composer('layouts.app-header', function($view){
-            $notifications=[];
-            $unreadCount=0;
+            $notifications = [];
+            $unreadCount = 0;
+            $user = Auth::user();
 
-            if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->hasRole('super-admin'))) {
-                $notifications= Auth::user()->notifications()->latest()->get()->toArray();
-                $unreadCount= Auth::user()->unreadNotifications()->count();
+            if ($user && ($user->hasRole('admin') || $user->hasRole('super-admin'))) {
+                $notifications = $user->notifications()->latest()->get()->toArray();
+                $unreadCount = $user->unreadNotifications()->count();
             }
-
 
             $view->with('notifications', $notifications);
             $view->with('unreadCount', $unreadCount);
-            $view->with('user', Auth::user()->load('roles'));
+            $view->with('user', $user?->load('roles'));
         });
     }
 }
