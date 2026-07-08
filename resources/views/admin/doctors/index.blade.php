@@ -26,10 +26,13 @@
                 <thead class="bg-gray-50 dark:bg-gray-800">
                 <tr class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                     <th class="px-4 py-3 !text-left">Name</th>
+
                     <th class="px-4 py-3 !text-left">Email</th>
                     <th class="px-4 py-3 !text-left">Department</th>
                     <th class="px-4 py-3 !text-left">Specialization</th>
+                    <th class="px-4 py-3 !text-left">Qualification</th>
                     <th class="px-4 py-3 !text-center">Status</th>
+                    <th class="px-4 py-3 !text-center">Role</th>
                     <th class="px-4 py-3 !text-right">Action</th>
                 </tr>
                 </thead>

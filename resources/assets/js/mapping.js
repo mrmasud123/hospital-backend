@@ -25,6 +25,7 @@ $(function () {
         },
         columns: [
             {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
             {data: 'role', orderable: false, searchable: false},
             // { data: 'permissions', orderable: false, searchable: false },
             {data: 'action', orderable: false, searchable: false}

@@ -10,9 +10,12 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MappingController;
 
 
-Route::middleware(['auth']) // or your Sanctum/session middleware group
+Route::middleware(['auth'])
 ->get('/modules/pharmacy/launch', [SsoController::class, 'launchPharmacy'])
     ->name('sso.pharmacy.launch');
+
+Route::get('/sso/silent-check', [SsoController::class, 'silentCheck'])
+    ->name('sso.silent-check');
 //Authentication
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -24,7 +27,6 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/online-users', [AdminController::class, 'onlineUsers'])->name('admin.online-users');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', function () {
-//        return \Illuminate\Support\Facades\Auth::user();
         return view('pages.dashboard.ecommerce');
     })->name('dashboard');
 

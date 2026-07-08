@@ -17,4 +17,19 @@ class SsoController extends Controller
 
         return redirect()->away($url);
     }
+
+    public function silentCheck(Request $request, SsoTokenIssuer $issuer)
+    {
+        if (!$request->user()) {
+            return redirect()->away(
+                config('sso.pharmacy_callback_url') . '?sso=none'
+            );
+        }
+
+        $token = $issuer->issueFor($request->user());
+
+        return redirect()->away(
+            config('sso.pharmacy_callback_url') . '?token=' . urlencode($token)
+        );
+    }
 }

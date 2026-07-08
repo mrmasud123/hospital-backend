@@ -11,7 +11,7 @@ Route::prefix('doctors')->middleware(['web', 'auth:web'])->group(function () {
     Route::get('/create', [DoctorController::class, 'create'])->name('admin.doctors.create');
     Route::post('/store', [DoctorController::class, 'store'])->name('admin.doctors.store');
     Route::get('/{user}/edit', [DoctorController::class, 'edit'])->name('admin.doctors.edit');
-    Route::put('/{doctor}', [DoctorController::class, 'update'])->name('admin.doctors.update');
+    Route::put('/{user}', [DoctorController::class, 'update'])->name('admin.doctors.update');
 
     // Delete doctor
     Route::delete('/{doctor}', [DoctorController::class, 'destroy'])->name('destroy');

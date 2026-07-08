@@ -12,6 +12,7 @@ $(function () {
             url: '/doctors/data',
             type: 'GET',
             dataSrc: function (json) {
+                console.log(json.data);
                 return json.data;
             },
             error: function (xhr) {
@@ -28,10 +29,13 @@ $(function () {
         ],
         columns: [
             { data: 'name', name: 'name', searchable: true },
+
             { data: 'email', name: 'email', searchable: true },
             { data: 'department', orderable: false, searchable: false },
             { data: 'specialization', orderable: false, searchable: false },
+            { data: 'qualification', orderable: false, searchable: false },
             { data: 'status', orderable: false, searchable: false, className: '!text-center' },
+            { data: 'role', orderable: false, searchable: false, className: '!text-center' },
             { data: 'action', orderable: false, searchable: false, className: '!text-right' }
         ]
     });
@@ -63,6 +67,70 @@ $(function () {
                     error: function () {
                         Swal.fire('Error', 'Something went wrong.', 'error');
                     }
+                });
+            }
+        });
+    });
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#doctorForm').on('submit', function (e) {
+        e.preventDefault();
+
+        const form = this;
+        const formData = new FormData(form);
+        const actionUrl = $(form).attr('action');
+
+        let method = $(form).find('input[name="_method"]').val() || 'POST';
+        console.log("Form method:", method);
+        Swal.fire({
+            title: 'Processing...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+
+        $.ajax({
+            url: actionUrl,
+            method: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+
+            success: function (response) {
+                Swal.close();
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response.message,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                console.log(response);
+
+                setTimeout(() => {
+                    window.location.href = "/doctors";
+                }, 1500);
+            },
+
+            error: function (xhr) {
+                Swal.close();
+
+                let errorMsg = 'Something went wrong';
+
+                if (xhr.responseJSON?.errors) {
+                    errorMsg = Object.values(xhr.responseJSON.errors)[0][0];
+                }
+
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorMsg,
+                    icon: 'error'
                 });
             }
         });

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <x-common.page-breadcrumb :pageTitle="[['name' => 'Employee Role Permission', 'link'=> '#']]" />
+    <x-common.page-breadcrumb :pageTitle="[['name' => 'User Role Permission', 'link'=> '#']]" />
 
     <div class="bg-white dark:bg-white/3 rounded-xl shadow p-4">
 
@@ -21,7 +21,8 @@
             <table id="rolesTable" class="datatable w-full text-left">
                 <thead>
                 <tr class="text-gray-600 dark:text-gray-300 border-b dark:border-gray-700">
-                    <th>Employee Name</th>
+                    <th>User Name</th>
+                    <th>Contact</th>
                     <th>Role</th>
                     {{--                    <th>Permissions</th>--}}
                     <th>Action</th>
