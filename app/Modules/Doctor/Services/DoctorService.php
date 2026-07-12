@@ -11,6 +11,10 @@ class DoctorService{
         return $this->repository->find($id);
     }
 
+    public function store(array $data){
+        $dto= DoctorDTO::fromArray($data);
+        return $this->repository->store($dto);
+    }
     public function update(int $id, array $data){
         $dto= DoctorDTO::fromArray($data);
 

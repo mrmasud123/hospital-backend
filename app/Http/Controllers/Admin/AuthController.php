@@ -32,6 +32,7 @@ class AuthController extends Controller
         if (!$user) {
             return ApiResponseHelper::error('Email does not exist', null, 404);
         }
+
         if (!$user->password) {
             return ApiResponseHelper::error('This account uses Google Sign-In. Please use the "Sign in with Google" button.', null, 401);
         }
@@ -42,6 +43,14 @@ class AuthController extends Controller
 
         if (isset($user->is_active) && !$user->is_active) {
             return ApiResponseHelper::error('Account is disabled', null, 403);
+        }
+
+        if ($user->roles->isEmpty()) {
+            return ApiResponseHelper::error('Your account has no assigned role. Please contact support.', null, 403);
+        }
+
+        if ($user->hasRole('user')) {
+            return ApiResponseHelper::error('You are not authorized to access the admin panel', null, 403);
         }
 
         Auth::guard('web')->login($user, $request->boolean('remember'));

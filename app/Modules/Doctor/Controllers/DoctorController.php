@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Modules\Department\Models\Department;
 use App\Modules\Doctor\Models\DoctorProfile;
+use App\Modules\Doctor\Requests\StoreDoctorRequest;
 use App\Modules\Doctor\Requests\UpdateDoctorRequest;
 use App\Modules\Doctor\Services\DoctorService;
 use Illuminate\Http\Request;
@@ -25,9 +26,9 @@ class DoctorController extends Controller
         $departments=Department::all();
         return view('admin.doctors.create', compact('departments'));
     }
-    public function store()
+    public function store(StoreDoctorRequest $request)
     {
-
+        $this->doctorService->store($request->validated());
     }
     public function edit(User $user)
     {

@@ -30,6 +30,11 @@ class MenuHelper
                 'path' => '/patients',
             ],
             [
+                'icon' => 'lucide:user-round',
+                'name' => 'Appointments',
+                'path' => '/appointment',
+            ],
+            [
                 'icon' => 'lucide:clipboard-plus',
                 'name' => 'Prescription',
                 'path' => '/prescriptions',

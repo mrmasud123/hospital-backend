@@ -7,6 +7,7 @@ interface DoctorRepositoryInterface{
 
 //    public function create(DoctorDTO $dto);
     public function find(int $id);
+    public function store(DoctorDTO $doctorDTO);
     public function update(int $id, DoctorDTO $dto);
 
 }
