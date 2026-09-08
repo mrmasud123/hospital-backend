@@ -41,7 +41,7 @@ Route::middleware('auth:web')->group(function () {
 //        Route::post('/{id}/read',    [NotificationController::class, 'markAsRead'])->name('read');
 //        Route::post('/read-all',     [NotificationController::class, 'markAllAsRead'])->name('readAll');
 //    });
-
+    Route::get('/test/all-roles', [RolesController::class, 'allRoles'])->name('test.all.roles');
     Route::get('/role-permission-mapping', [MappingController::class, 'rolePermissionMapping'])
         ->name('role.permission.mapping');
 

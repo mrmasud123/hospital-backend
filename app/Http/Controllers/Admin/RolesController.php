@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
 use Yajra\DataTables\Facades\DataTables;
 class RolesController extends Controller
 {
@@ -111,3 +110,4 @@ class RolesController extends Controller
             ->make(true);
     }
 }
+
